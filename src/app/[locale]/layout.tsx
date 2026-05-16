@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "@/app/globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { QueryProvider, ThemeProvider } from "@/providers";
 import { Toaster } from "@/components/ui";
+
+const satoshi = localFont({
+  src: "../../../public/fonts/Satoshi-Variable.woff2",
+  variable: "--font-satoshi",
+  weight: "300 900",
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -30,7 +37,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
-      className={`${geistMono.variable} h-full antialiased`}
+      className={`${satoshi.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
