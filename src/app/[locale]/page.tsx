@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
-//    This    is   a   test    comment
 export default function Home() {
   const t = useTranslations("HomePage");
   return (
