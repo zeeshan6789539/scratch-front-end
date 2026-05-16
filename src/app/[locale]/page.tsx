@@ -1,29 +1,25 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageToggle } from "@/components/language-toggle";
 
 export default function Home() {
   const t = useTranslations("HomePage");
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black relative">
-      <div className="absolute top-4 right-4 flex gap-4 z-10">
-        <Link
-          href="/"
-          locale="en"
-          className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white"
-        >
-          English
-        </Link>
-        <Link
-          href="/"
-          locale="ar"
-          className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white"
-        >
-          العربية
-        </Link>
+    <div className="flex flex-col flex-1 items-center justify-center bg-background font-sans relative transition-colors duration-300">
+      <div className="absolute top-6 right-6 flex items-center gap-2 z-10 p-1.5 bg-card/60 backdrop-blur-xl rounded-full border border-border shadow-2xl">
+        <LanguageToggle />
+        <div className="w-px h-4 bg-border mx-1" />
+        <ThemeToggle />
       </div>
 
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        {t("title")}
+      <main className="flex flex-1 w-full max-w-4xl flex-col items-center justify-center py-32 px-8 sm:items-start text-center sm:text-left">
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-foreground mb-8">
+          {t("title")}
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mb-12">
+          Experience the power of modern web development with Next.js, Tailwind
+          CSS, and i18n support.
+        </p>
       </main>
     </div>
   );
