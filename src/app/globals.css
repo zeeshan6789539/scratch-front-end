@@ -71,7 +71,6 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0.02 160);
 
-  /* Primary Action Emerald */
   --primary: oklch(0.62 0.17 160);
   --primary-foreground: oklch(0.98 0.01 160);
 
@@ -107,6 +106,32 @@
   --chart-5: oklch(0.269 0 0);
 
   --radius: 0.625rem;
+
+  /* --- 2026 Toast Palette (Light) --- */
+  --toast-success-bg: oklch(0.97 0.04 155);
+  --toast-success-border: oklch(0.82 0.12 155);
+  --toast-success-text: oklch(0.25 0.08 155);
+  --toast-success-icon: oklch(0.5 0.18 155);
+
+  --toast-info-bg: oklch(0.96 0.03 265);
+  --toast-info-border: oklch(0.8 0.1 265);
+  --toast-info-text: oklch(0.25 0.08 265);
+  --toast-info-icon: oklch(0.5 0.2 265);
+
+  --toast-warning-bg: oklch(0.97 0.05 75);
+  --toast-warning-border: oklch(0.82 0.14 75);
+  --toast-warning-text: oklch(0.28 0.1 75);
+  --toast-warning-icon: oklch(0.6 0.18 75);
+
+  --toast-error-bg: oklch(0.97 0.03 20);
+  --toast-error-border: oklch(0.8 0.12 20);
+  --toast-error-text: oklch(0.28 0.1 20);
+  --toast-error-icon: oklch(0.55 0.22 20);
+
+  --toast-loading-bg: oklch(0.96 0.04 305);
+  --toast-loading-border: oklch(0.78 0.14 305);
+  --toast-loading-text: oklch(0.25 0.1 305);
+  --toast-loading-icon: oklch(0.55 0.24 305);
 }
 
 .dark {
@@ -120,7 +145,6 @@
   --popover: oklch(0.22 0.03 260);
   --popover-foreground: oklch(0.95 0.02 260);
 
-  /* Primary Action Indigo */
   --primary: oklch(0.58 0.18 265);
   --primary-foreground: oklch(1 0 0);
 
@@ -154,6 +178,32 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
+
+  /* --- 2026 Toast Palette (Dark) --- */
+  --toast-success-bg: oklch(0.16 0.04 155);
+  --toast-success-border: oklch(0.32 0.12 155 / 35%);
+  --toast-success-text: oklch(0.88 0.08 155);
+  --toast-success-icon: oklch(0.72 0.22 155);
+
+  --toast-info-bg: oklch(0.14 0.04 265);
+  --toast-info-border: oklch(0.45 0.15 265 / 35%);
+  --toast-info-text: oklch(0.88 0.06 265);
+  --toast-info-icon: oklch(0.74 0.2 265);
+
+  --toast-warning-bg: oklch(0.15 0.05 75);
+  --toast-warning-border: oklch(0.55 0.18 75 / 35%);
+  --toast-warning-text: oklch(0.92 0.08 75);
+  --toast-warning-icon: oklch(0.8 0.2 75);
+
+  --toast-error-bg: oklch(0.14 0.04 20);
+  --toast-error-border: oklch(0.48 0.2 20 / 40%);
+  --toast-error-text: oklch(0.9 0.06 20);
+  --toast-error-icon: oklch(0.72 0.22 20);
+
+  --toast-loading-bg: oklch(0.14 0.05 305);
+  --toast-loading-border: oklch(0.42 0.18 305 / 35%);
+  --toast-loading-text: oklch(0.9 0.06 305);
+  --toast-loading-icon: oklch(0.72 0.26 305);
 }
 
 @layer base {
@@ -165,5 +215,51 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  .toaster {
+    --normal-bg: var(--popover);
+    --normal-text: var(--popover-foreground);
+    --normal-border: var(--border);
+
+    --success-bg: var(--toast-success-bg);
+    --success-border: var(--toast-success-border);
+    --success-text: var(--toast-success-text);
+
+    --info-bg: var(--toast-info-bg);
+    --info-border: var(--toast-info-border);
+    --info-text: var(--toast-info-text);
+
+    --warning-bg: var(--toast-warning-bg);
+    --warning-border: var(--toast-warning-border);
+    --warning-text: var(--toast-warning-text);
+
+    --error-bg: var(--toast-error-bg);
+    --error-border: var(--toast-error-border);
+    --error-text: var(--toast-error-text);
+
+    --border-radius: var(--radius);
+  }
+
+  .cn-toast {
+    @apply !bg-[var(--normal-bg)] !text-[var(--normal-text)] !border-[var(--normal-border)] !rounded-[var(--border-radius)];
+  }
+
+  .cn-toast[data-type="success"] {
+    @apply !bg-[var(--success-bg)] !text-[var(--success-text)] !border-[var(--success-border)];
+  }
+
+  .cn-toast[data-type="error"] {
+    @apply !bg-[var(--error-bg)] !text-[var(--error-text)] !border-[var(--error-border)];
+  }
+
+  .cn-toast[data-type="info"] {
+    @apply !bg-[var(--info-bg)] !text-[var(--info-text)] !border-[var(--info-border)];
+  }
+
+  .cn-toast[data-type="warning"] {
+    @apply !bg-[var(--warning-bg)] !text-[var(--warning-text)] !border-[var(--warning-border)];
   }
 }

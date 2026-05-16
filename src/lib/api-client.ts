@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_CONFIG, LOCAL_STORAGE_KEYS } from "@/lib";
 import { IApiResponse, IPaginatedResponse } from "@/types";
+import { toast } from "sonner";
 
 export const apiClient = axios.create({
   baseURL: API_CONFIG.BASE_URL,
@@ -24,8 +25,17 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // Global 401 handling
+    if (typeof window !== "undefined") {
+      const message =
+        error.response?.data?.message || error.message || "An error occurred";
+
+      if (error.response?.status === 401) {
+        toast.error("Unauthorized", {
+          description: "Your session has expired. Please log in again.",
+        });
+      } else {
+        toast.error(message);
+      }
     }
 
     return Promise.reject(error);
