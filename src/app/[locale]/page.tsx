@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { ToastTest } from "@/components/toast-test";
+import { ApiTest } from "@/components/api-test";
 
 export default function Home() {
   const t = useTranslations("HomePage");
@@ -23,6 +24,7 @@ export default function Home() {
         </p>
         <div className="flex flex-wrap gap-4">
           <ToastTest />
+          <ApiTest />
         </div>
       </main>
     </div>

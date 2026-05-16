@@ -4,7 +4,7 @@ import { IApiResponse, IPaginatedResponse } from "@/types";
 import { toast } from "sonner";
 
 export const apiClient = axios.create({
-  baseURL: API_CONFIG.BASE_URL,
+  baseURL: `${API_CONFIG.BASE_URL}${API_CONFIG.PREFIX}`,
   timeout: API_CONFIG.TIMEOUT,
   headers: API_CONFIG.HEADERS,
 });
@@ -61,6 +61,11 @@ export const apiService = {
 
   post: async <T>(url: string, data?: unknown): Promise<T> => {
     const response = await apiClient.post<IApiResponse<T>>(url, data);
+    return response.data.data as T;
+  },
+
+  put: async <T>(url: string, data?: unknown): Promise<T> => {
+    const response = await apiClient.put<IApiResponse<T>>(url, data);
     return response.data.data as T;
   },
 

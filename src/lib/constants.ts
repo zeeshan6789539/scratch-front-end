@@ -1,5 +1,6 @@
 export const API_CONFIG = {
   BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.example.com",
+  PREFIX: "/api/v1",
   TIMEOUT: 10000,
   HEADERS: {
     "Content-Type": "application/json",
@@ -9,7 +10,6 @@ export const API_CONFIG = {
 export const QUERY_KEYS = {
   USER: "user",
   POSTS: "posts",
-  // Add more query keys as needed
 } as const;
 
 export const LOCAL_STORAGE_KEYS = {
