@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
+//    This    is   a   test    comment
 export default function Home() {
   const t = useTranslations("HomePage");
   return (
@@ -22,19 +23,6 @@ export default function Home() {
         </Link>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-      
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         {t("title")}
       </main>
