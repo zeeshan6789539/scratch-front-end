@@ -19,3 +19,8 @@ export interface IApiError {
   status: number;
   errors?: Record<string, string[]>;
 }
+
+export interface ILocationData {
+  latitude: number;
+  longitude: number;
+}

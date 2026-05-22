@@ -2,6 +2,7 @@ import axios from "axios";
 import { API_CONFIG, LOCAL_STORAGE_KEYS } from "@/lib";
 import { IApiResponse, IPaginatedResponse } from "@/types";
 import { toast } from "sonner";
+import { getLocation } from "./utils";
 
 export const apiClient = axios.create({
   baseURL: `${API_CONFIG.BASE_URL}${API_CONFIG.PREFIX}`,
@@ -11,11 +12,24 @@ export const apiClient = axios.create({
 
 // Request interceptor
 apiClient.interceptors.request.use(
-  (config) => {
+  async (config) => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN);
       if (token) config.headers.Authorization = `Bearer ${token}`;
     }
+
+    const location = await getLocation();
+
+    config.headers["x-browser"] = navigator.userAgent;
+    config.headers["x-platform"] = navigator.platform;
+    config.headers["x-language"] = navigator.language;
+    config.headers["x-timezone"] =
+      Intl.DateTimeFormat().resolvedOptions().timeZone;
+    config.headers["x-client-time"] = new Date().toISOString();
+    config.headers["x-screen-size"] = `${screen.width}x${screen.height}`;
+    config.headers["x-page"] = window.location.pathname;
+    config.headers["x-lat"] = String(location?.latitude ?? null);
+    config.headers["x-lng"] = String(location?.longitude ?? null);
     return config;
   },
   (error) => Promise.reject(error)
